@@ -6,10 +6,14 @@
 
 
 ## Quick Start
-<p>I recommend having a look at the example project.</p>
+**<p>I recommend having a look at the example project.</p>**
 
 1. Prepare your existing view by adding a `ContentControl` and registering it to the `RegionNavigationService` with a specific region key.
+    - Registration of regions can be done by calling `RegionNavigationService.RegisterRegion(_YourRegionKey_, _YourContentControl_)`
+    - Or by using the `NavigationService.Region="_YourRegionKey_"` property inside the ContentControl's xaml.
 2. Create the views and view models that you want to navigate to inside your `ContentControl` and register them to the `RegionContentService` with a specific content key.
+    - Views-only are registered by calling `RegionContentService.RegisterContent<_YourViewType_>(_YourContentKey_)`.
+    - If you want to register a view and a view model, you can call `RegionContentService.RegisterContent<_YourViewType_, _YourViewModelType_>(_YourContentKey_)`.
 3. **Done!** You can now navigate to your views by simply calling `RegionNavigationService.Navigate(_YourRegionKey_, _YourContentKey_)`.
 
 **<p>Feel free to reach out, if help is needed.</p>**
