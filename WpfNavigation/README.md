@@ -2,13 +2,11 @@
 
 
 ## Description 
-This library allows for simple adding of region navigation to WPF applications.
-
-This means, you can navigate to different views (optionally with view models) in ContentControls.
+<p>This library allows for simple adding of navigation regions to WPF applications.<br/>This means, you can navigate to different views (optionally with view models) in ContentControls.</p>
 
 
 ## Quick Start
-**I recommend having a look at the example project.**
+**<p>I recommend having a look at the example project.</p>**
 
 1. Prepare your existing view by adding a `ContentControl` and registering it to the `RegionNavigationService` with a specific region key.
     - Registration of regions can be done by calling `RegionNavigationService.RegisterRegion(_YourRegionKey_, _YourContentControl_)`
@@ -20,18 +18,11 @@ This means, you can navigate to different views (optionally with view models) in
 
 **<p>Feel free to reach out, if help is needed.</p>**
 
-## Example screenshots
-<p>These screenshots show the example pages, included in the project.<br/>Navigation is possible via ShellWindow menu or via buttons on the pages.</p>
-
-![MainPage](./Screenshots/Screenshot1.PNG)
-<br/>
-![MainPage](./Screenshots/Screenshot2.PNG)
-
 ## Ideas
 * Add events/callbacks.
 * Add support for more Controls (Frames, ...).
 ## Third Party Software / Packages
-Please have a look at [THIRD-PARTY-LICENSES](./THIRD-PARTY-LICENSES.md) for all the awesome packages used in this template.
+Please have a look at [THIRD-PARTY-LICENSES](https://github.com/philipp2604/WpfNavigation/blob/master/THIRD-PARTY-LICENSES.md) for all the awesome packages used in this template.
 
 ## License
-This template is [MIT licensed](./LICENSE.txt).
+This template is [MIT licensed](https://github.com/philipp2604/WpfNavigation/blob/master/LICENSE.txt).
