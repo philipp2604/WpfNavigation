@@ -6,6 +6,27 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU</Platforms>
+    <Title>WpfNavigation</Title>
+    <Authors>Philipp Siewert</Authors>
+    <Description>A region based navigation for WPF applications.</Description>
+    <Copyright>Philipp Siewert</Copyright>
+    <PackageProjectUrl>https://github.com/philipp2604/WpfNavigation</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/philipp2604/WpfNavigation</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Wpf;Navigation;Regions</PackageTags>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>philipp2604.$(AssemblyName)</PackageId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
