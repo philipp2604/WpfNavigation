@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
 using WpfNavigation.Example;
+using WpfNavigation.Example.Constants;
+using WpfNavigation.Example.Views;
 using WpfNavigation.Interfaces.Services;
 
-namespace WpfBase_Template.Services;
+namespace WpfNavigation.Example.Services;
 
 /// <summary>
 /// AppHostService class.
@@ -49,8 +51,8 @@ public class AppHostService(IServiceProvider serviceProvider, IRegionNavigationS
                 throw new NullReferenceException(nameof(mainWnd));
 
             ((MainWindow)mainWnd).Show();
-            _navigationRegionService.Navigate("Control1", "Content1");
-            _navigationRegionService.Navigate("Control2", "Content2");
+            _navigationRegionService.Navigate(NavigationConstants.Regions.Region1, NavigationConstants.Content.Content1);
+            _navigationRegionService.Navigate(NavigationConstants.Regions.Region2, NavigationConstants.Content.Content2);
             await Task.CompletedTask;
         }
     }

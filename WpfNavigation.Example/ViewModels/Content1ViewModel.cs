@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using WpfNavigation.Example.Constants;
 using WpfNavigation.Interfaces.Services;
 using WpfNavigation.Interfaces.ViewModels;
 
-namespace WpfNavigation.Example
+namespace WpfNavigation.Example.ViewModels
 {
     public class Content1ViewModel(IRegionNavigationService navigationRegionService) : IViewModel
     {
@@ -14,12 +15,12 @@ namespace WpfNavigation.Example
         {
             if (_state)
             {
-                _navigationRegionService.Navigate("Control2", "Content2");
+                _navigationRegionService.Navigate(NavigationConstants.Regions.Region2, NavigationConstants.Content.Content2);
                 _state = false;
             }
             else
             {
-                _navigationRegionService.Navigate("Control2", "Content3");
+                _navigationRegionService.Navigate(NavigationConstants.Regions.Region2, NavigationConstants.Content.Content3);
                 _state = true;
             }
         });

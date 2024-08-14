@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WpfNavigation.Example;
+namespace WpfNavigation.Example.Views;
 
 public partial class MainWindow : Window
 {

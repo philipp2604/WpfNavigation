@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
-using WpfBase_Template.Services;
+using WpfNavigation.Example.Constants;
+using WpfNavigation.Example.Services;
+using WpfNavigation.Example.ViewModels;
+using WpfNavigation.Example.Views;
 using WpfNavigation.Interfaces.Services;
 using WpfNavigation.Services;
 
@@ -80,9 +83,9 @@ public partial class App : Application
         if (navigationContentService == null)
             throw new NullReferenceException(nameof(navigationContentService));
 
-        navigationContentService.RegisterContent<Content1, Content1ViewModel>("Content1");
-        navigationContentService.RegisterContent<Content2>("Content2");
-        navigationContentService.RegisterContent<Content3>("Content3");
+        navigationContentService.RegisterContent<Content1, Content1ViewModel>(NavigationConstants.Content.Content1);
+        navigationContentService.RegisterContent<Content2>(NavigationConstants.Content.Content2);
+        navigationContentService.RegisterContent<Content3>(NavigationConstants.Content.Content3);
     }
 
     /// <summary>
