@@ -23,6 +23,7 @@
 
 ## Ideas
 * Add events/callbacks.
+* Add support for more Controls (Frames, ...).
 ## Third Party Software / Packages
 Please have a look at [THIRD-PARTY-LICENSES](./THIRD-PARTY-LICENSES.md) for all the awesome packages used in this template.
 
