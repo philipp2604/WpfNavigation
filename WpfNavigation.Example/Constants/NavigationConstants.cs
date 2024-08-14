@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WpfNavigation.Example.Constants;
+﻿namespace WpfNavigation.Example.Constants;
 
 /// <summary>
 /// Navigation constants.

@@ -102,7 +102,6 @@ public class RegionNavigationService(INavigationContentService contentService) :
         if (contentKey == null)
             throw RegionNavigationServiceException.Prebuilt.ArgumentNullException(nameof(contentKey));
 
-
         if (!KeyRegistered(regionKey))
             throw RegionNavigationServiceException.Prebuilt.RegionKeyNotRegistered(regionKey);
 

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Controls;
 using WpfNavigation.Exceptions;
 using WpfNavigation.Interfaces.Services;
+using WpfNavigation.Interfaces.ViewModels;
 using WpfNavigation.Models;
 using WpfNavigation.Services;
-using System.Windows.Controls;
-using Moq;
-using WpfNavigation.Interfaces.ViewModels;
 
 namespace WpfNavigation.Test.Services;
+
 public class RegionNavigationServiceTests
 {
     [WpfFact]
@@ -23,10 +18,8 @@ public class RegionNavigationServiceTests
         RegionNavigationService.ClearRegions();
         RegionNavigationService.RegisterRegion(region);
 
-
         //Act
         var isRegistered = RegionNavigationService.KeyRegistered(key);
-
 
         //Assert
         Assert.True(isRegistered);
@@ -39,10 +32,8 @@ public class RegionNavigationServiceTests
         var key = "testKey";
         RegionNavigationService.ClearRegions();
 
-
         //Act
         var isRegistered = RegionNavigationService.KeyRegistered(key);
-
 
         //Assert
         Assert.False(isRegistered);
@@ -54,9 +45,8 @@ public class RegionNavigationServiceTests
         //Arrange
         string? key = null;
 
-
         //Act & Assert
-        Assert.Throws<RegionNavigationServiceException>(() =>  RegionNavigationService.KeyRegistered(key!));
+        Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.KeyRegistered(key!));
     }
 
     [WpfFact]
@@ -66,7 +56,6 @@ public class RegionNavigationServiceTests
         var key = "testKey";
         var region = new NavigationRegion(key, new ContentControl());
         RegionNavigationService.ClearRegions();
-
 
         //Act
         RegionNavigationService.RegisterRegion(region);
@@ -79,7 +68,6 @@ public class RegionNavigationServiceTests
         string? key = null;
         var region = new NavigationRegion(key!, new ContentControl());
 
-
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.RegisterRegion(region));
     }
@@ -90,7 +78,6 @@ public class RegionNavigationServiceTests
         //Arrange
         var key = "testKey";
         var region = new NavigationRegion(key!, null!);
-
 
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.RegisterRegion(region));
@@ -103,7 +90,6 @@ public class RegionNavigationServiceTests
         var key = "testKey";
         var region = new NavigationRegion(key!, new ContentControl());
         RegionNavigationService.RegisterRegion(region);
-
 
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.RegisterRegion(region));
@@ -118,10 +104,8 @@ public class RegionNavigationServiceTests
         RegionNavigationService.ClearRegions();
         RegionNavigationService.RegisterRegion(region);
 
-
         //Act
         var regionReturned = RegionNavigationService.GetRegion(key);
-
 
         //Assert
         Assert.NotNull(regionReturned);
@@ -134,7 +118,6 @@ public class RegionNavigationServiceTests
         //Arrange
         string? key = null;
 
-
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.GetRegion(key!));
     }
@@ -144,8 +127,7 @@ public class RegionNavigationServiceTests
     {
         //Arrange
         var key = "testKey";
-         RegionNavigationService.ClearRegions();
-
+        RegionNavigationService.ClearRegions();
 
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.GetRegion(key));
@@ -159,7 +141,7 @@ public class RegionNavigationServiceTests
         var view = new Page();
         var control = new ContentControl();
         var region = new NavigationRegion(key, control);
-        
+
         var navigationContentService = new Moq.Mock<INavigationContentService>();
         navigationContentService
             .Setup(x => x.GetContentView(key))
@@ -201,10 +183,8 @@ public class RegionNavigationServiceTests
 
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
 
-
         //Act
         regionNavigationService.Navigate(key, key);
-
 
         //Assert
         Assert.NotNull(control.Content);
@@ -224,7 +204,6 @@ public class RegionNavigationServiceTests
 
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
 
-
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey!, contentKey));
     }
@@ -239,7 +218,6 @@ public class RegionNavigationServiceTests
         var navigationContentService = new Moq.Mock<INavigationContentService>();
 
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
-
 
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey, contentKey!));
@@ -256,7 +234,6 @@ public class RegionNavigationServiceTests
 
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
         RegionNavigationService.ClearRegions();
-
 
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey, contentKey!));

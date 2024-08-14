@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-using WpfNavigation.Example;
 using WpfNavigation.Example.Constants;
 using WpfNavigation.Example.Views;
 using WpfNavigation.Interfaces.Services;

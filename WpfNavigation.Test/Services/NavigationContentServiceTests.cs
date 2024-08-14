@@ -1,5 +1,3 @@
-using System;
-using System.Windows;
 using System.Windows.Controls;
 using WpfNavigation.Exceptions;
 using WpfNavigation.Interfaces.ViewModels;
@@ -19,10 +17,8 @@ public class NavigationContentServiceTests
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
         navigationContentService.RegisterContent<Page>(key);
 
-
         //Act
         var isRegistered = navigationContentService.KeyRegistered(key);
-
 
         //Assert
         Assert.True(isRegistered);
@@ -37,10 +33,8 @@ public class NavigationContentServiceTests
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
 
-
         //Act
         var isRegistered = navigationContentService.KeyRegistered(key);
-
 
         //Assert
         Assert.False(isRegistered);
@@ -55,7 +49,6 @@ public class NavigationContentServiceTests
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
 
-
         //Act
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.KeyRegistered(key!));
     }
@@ -68,7 +61,6 @@ public class NavigationContentServiceTests
         var key = "testKey";
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
-
 
         //Act
         navigationContentService.RegisterContent<Page>(key);
@@ -83,7 +75,6 @@ public class NavigationContentServiceTests
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
 
-
         //Act
         navigationContentService.RegisterContent<Page, IViewModel>(key);
     }
@@ -96,7 +87,6 @@ public class NavigationContentServiceTests
         string? key = null;
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
-
 
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.RegisterContent<Page, IViewModel>(key!));
@@ -111,7 +101,6 @@ public class NavigationContentServiceTests
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
         navigationContentService.RegisterContent<Page, IViewModel>(key);
-
 
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.RegisterContent<Page, IViewModel>(key));
@@ -128,10 +117,8 @@ public class NavigationContentServiceTests
             .Setup(x => x.GetService(typeof(Page)))
             .Returns(new Page());
 
-
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
         navigationContentService.RegisterContent<Page>(key);
-
 
         //Act
         var view = navigationContentService.GetContentView(key);
@@ -151,7 +138,6 @@ public class NavigationContentServiceTests
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
 
-
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.GetContentView(key!));
     }
@@ -165,7 +151,6 @@ public class NavigationContentServiceTests
         var serviceProvider = new Moq.Mock<IServiceProvider>();
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
-
 
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.GetContentView(key));
@@ -182,10 +167,8 @@ public class NavigationContentServiceTests
             .Setup(x => x.GetService(typeof(Page)))
             .Returns(null!);
 
-
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
         navigationContentService.RegisterContent<Page>(key);
-
 
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.GetContentView(key));
@@ -203,10 +186,8 @@ public class NavigationContentServiceTests
             .Setup(x => x.GetService(typeof(IViewModel)))
             .Returns(viewModelMock.Object);
 
-
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
         navigationContentService.RegisterContent<Page, IViewModel>(key);
-
 
         //Act
         var viewModel = navigationContentService.GetContentViewModel(key);
@@ -225,14 +206,11 @@ public class NavigationContentServiceTests
 
         var serviceProvider = new Moq.Mock<IServiceProvider>();
 
-
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
         navigationContentService.RegisterContent<Page>(key);
 
-
         //Act
         var viewModel = navigationContentService.GetContentViewModel(key);
-
 
         //Assert
         Assert.Null(viewModel);
@@ -248,7 +226,6 @@ public class NavigationContentServiceTests
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
 
-
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.GetContentViewModel(key!));
     }
@@ -262,7 +239,6 @@ public class NavigationContentServiceTests
         var serviceProvider = new Moq.Mock<IServiceProvider>();
 
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
-
 
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.GetContentViewModel(key));
@@ -279,10 +255,8 @@ public class NavigationContentServiceTests
             .Setup(x => x.GetService(typeof(IViewModel)))
             .Returns(null!);
 
-
         var navigationContentService = new NavigationContentService(serviceProvider.Object);
         navigationContentService.RegisterContent<Page, IViewModel>(key);
-
 
         //Act & Assert
         Assert.Throws<NavigationContentServiceException>(() => navigationContentService.GetContentViewModel(key));
