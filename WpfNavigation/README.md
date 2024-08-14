@@ -2,11 +2,13 @@
 
 
 ## Description 
-<p>This library allows for simple adding of navigation regions to WPF applications.<br/>This means, you can navigate to different views (optionally with view models) in ContentControls.</p>
+This library allows for simple adding of navigation regions to WPF applications.
+
+This means, you can navigate to different views (optionally with view models) in ContentControls.
 
 
 ## Quick Start
-**<p>I recommend having a look at the example project.</p>**
+**I recommend having a look at the example project.**
 
 1. Prepare your existing view by adding a `ContentControl` and registering it to the `RegionNavigationService` with a specific region key.
     - Registration of regions can be done by calling `RegionNavigationService.RegisterRegion(_YourRegionKey_, _YourContentControl_)`
@@ -16,7 +18,7 @@
     - If you want to register a view and a view model, you can call `RegionContentService.RegisterContent<_YourViewType_, _YourViewModelType_>(_YourContentKey_)`.
 3. **Done!** You can now navigate to your views by simply calling `RegionNavigationService.Navigate(_YourRegionKey_, _YourContentKey_)`.
 
-**<p>Feel free to reach out, if help is needed.</p>**
+**Feel free to reach out, if help is needed.**
 
 ## Ideas
 * Add events/callbacks.
