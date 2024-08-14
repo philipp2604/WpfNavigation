@@ -1,4 +1,4 @@
-# WpfNavigation &middot; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &middot; [![build and test](https://github.com/philipp2604/WpfBase_Template/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/philipp2604/WpfBase_Template/actions/workflows/build-and-test.yml)
+# WpfNavigation &middot; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &middot; [![build and test](https://github.com/philipp2604/WpfNavigation/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/philipp2604/WpfNavigation/actions/workflows/build-and-test.yml)
 
 
 ## Description 
