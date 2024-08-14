@@ -25,12 +25,12 @@ public interface IRegionNavigationService
     public void RegisterRegion(string key, ContentControl control);
 
     /// <summary>
-    /// Returns a regitered <see cref="NavigationRegion"/>.
+    /// Returns a registered <see cref="NavigationRegion"/>.
     /// </summary>
     /// <param name="key">The region's registered key.</param>
     /// <returns>The <see cref="NavigationRegion"/> registered with the key.</returns>
     /// <exception cref="RegionNavigationServiceException"></exception>
-    public NavigationRegion GetNavigationRegion(string key);
+    public NavigationRegion GetRegion(string key);
 
     /// <summary>
     /// Navigates to the specified content.

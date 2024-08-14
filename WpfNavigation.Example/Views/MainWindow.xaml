@@ -14,7 +14,7 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ContentControl wpfNav:RegionNavigationService.Region="Region1" />
-        <ContentControl Grid.Column="2" wpfNav:RegionNavigationService.Region="Region2" />
+        <ContentControl wpfNav:RegionNavigationService.NavigationRegion="Region1" />
+        <ContentControl Grid.Column="2" wpfNav:RegionNavigationService.NavigationRegion="Region2" />
     </Grid>
 </Window>

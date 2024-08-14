@@ -16,6 +16,14 @@ public class RegionNavigationService(INavigationContentService contentService) :
     private static readonly Dictionary<string, NavigationRegion> _regions = [];
 
     /// <summary>
+    /// Removes all regions.
+    /// </summary>
+    public static void ClearRegions()
+    {
+        _regions.Clear();
+    }
+
+    /// <summary>
     /// Registers a navigation region.
     /// </summary>
     /// <param name="region">The region to register.</param>
@@ -71,7 +79,7 @@ public class RegionNavigationService(INavigationContentService contentService) :
     /// <param name="key">The region's registered key.</param>
     /// <returns>The <see cref="NavigationRegion"/> registered with the key.</returns>
     /// <exception cref="RegionNavigationServiceException"></exception>
-    public static NavigationRegion GetNavigationRegion(string key)
+    public static NavigationRegion GetRegion(string key)
     {
         return key == null ?
             throw RegionNavigationServiceException.Prebuilt.ArgumentNullException(nameof(key))
@@ -80,9 +88,9 @@ public class RegionNavigationService(INavigationContentService contentService) :
     }
 
     /// <inheritdoc/>
-    NavigationRegion IRegionNavigationService.GetNavigationRegion(string key)
+    NavigationRegion IRegionNavigationService.GetRegion(string key)
     {
-        return GetNavigationRegion(key);
+        return GetRegion(key);
     }
 
     /// <inheritdoc/>
@@ -93,6 +101,7 @@ public class RegionNavigationService(INavigationContentService contentService) :
 
         if (contentKey == null)
             throw RegionNavigationServiceException.Prebuilt.ArgumentNullException(nameof(contentKey));
+
 
         if (!KeyRegistered(regionKey))
             throw RegionNavigationServiceException.Prebuilt.RegionKeyNotRegistered(regionKey);
@@ -126,17 +135,17 @@ public class RegionNavigationService(INavigationContentService contentService) :
     #region DependecyProperty
 
     /// <summary>
-    /// The attached dependecy property for the "Region" property.
+    /// The attached dependecy property for the "NavigationRegion" property.
     /// </summary>
     public static readonly DependencyProperty RegionProperty =
         DependencyProperty.RegisterAttached(
-            "Region", typeof(string), typeof(IRegionNavigationService),
+            "NavigationRegion", typeof(string), typeof(IRegionNavigationService),
             new PropertyMetadata(
                 null, OnRegionSet)
             );
 
     /// <summary>
-    /// Callback function to register a NavigationRegion, if a valid "Region" property was set.
+    /// Callback function to register a NavigationRegion, if a valid "NavigationRegion" property was set.
     /// </summary>
     /// <param name="d">The <see cref="DependencyObject"/> which owns the property.</param>
     /// <param name="e">The <see cref="DependencyPropertyChangedEventArgs"/>.</param>
@@ -155,12 +164,12 @@ public class RegionNavigationService(INavigationContentService contentService) :
     }
 
     /// <summary>
-    /// Setter method for the "Region" property, not implemented yet!
+    /// Setter method for the "NavigationRegion" property.
     /// </summary>
     /// <param name="control"></param>
     /// <param name="key"></param>
-    /// <exception cref="NotImplementedException"></exception>
-    public static void SetRegion(DependencyObject control, string key)
+    /// <exception cref="ArgumentNullException"></exception>
+    public static void SetNavigationRegion(DependencyObject control, string key)
     {
         ArgumentNullException.ThrowIfNull(control);
 
@@ -168,12 +177,12 @@ public class RegionNavigationService(INavigationContentService contentService) :
     }
 
     /// <summary>
-    /// Getter method for the "Region" property, not implemented yet!"
+    /// Getter method for the "Region" property."
     /// </summary>
     /// <param name="control"></param>
     /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public static string GetRegion(DependencyObject control)
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string GetNavigationRegion(DependencyObject control)
     {
         ArgumentNullException.ThrowIfNull(control);
 
