@@ -9,7 +9,7 @@ on:
   pull_request:
     branches:
       - '*'          # Run the workflow for all pull requests
-release:
+  release:
     types:
       - published
 
