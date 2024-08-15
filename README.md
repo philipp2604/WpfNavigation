@@ -1,4 +1,7 @@
-# WpfNavigation &middot; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &middot; [![build and test](https://github.com/philipp2604/WpfNavigation/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/philipp2604/WpfNavigation/actions/workflows/build-and-test.yml)
+# WpfNavigation
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![build and test](https://github.com/philipp2604/WpfNavigation/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/philipp2604/WpfNavigation/actions/workflows/build-and-test.yml) ![GitHub Release](https://img.shields.io/github/v/release/philipp2604/WpfNavigation) [![NuGet Version](https://img.shields.io/nuget/v/philipp2604.WpfNavigation)](https://www.nuget.org/packages/philipp2604.WpfNavigation/)
+
+
 
 
 ## Description 
@@ -6,6 +9,8 @@ This library allows for simple adding of region navigation to WPF applications.
 
 This means, you can navigate to different views (optionally with view models) in ContentControls.
 
+## Download
+You can acquire this library either directly via the NuGet package manager or by downloading it from the [NuGet Gallery](https://www.nuget.org/packages/philipp2604.WpfNavigation/).
 
 ## Quick Start
 **I recommend having a look at the example project.**
