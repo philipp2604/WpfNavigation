@@ -13,18 +13,30 @@ This means, you can navigate to different views (optionally with view models) in
 1. Prepare your existing view by adding a `ContentControl` and registering it to the `RegionNavigationService` with a specific region key.
     - Registration of regions can be done by calling `RegionNavigationService.RegisterRegion(_YourRegionKey_, _YourContentControl_)`
     - Or by using the `NavigationService.NavigationRegion="_YourRegionKey_"` property inside the ContentControl's xaml.
-2. Create the views and view models that you want to navigate to inside your `ContentControl` and register them to the `RegionContentService` with a specific content key.
+
+
+2. Create the views that you want to navigate to.
+
+
+3. Optionally, create view models for your views.
+    - If needed, you can implement the `INavigationAware` interface in your view models, making them being notified when navigation occurs.
+
+
+4. Register your views and view models to the `RegionContentService` with a specific content key.
     - Views-only are registered by calling `RegionContentService.RegisterContent<_YourViewType_>(_YourContentKey_)`.
     - If you want to register a view and a view model, you can call `RegionContentService.RegisterContent<_YourViewType_, _YourViewModelType_>(_YourContentKey_)`.
-3. **Done!** You can now navigate to your views by simply calling `RegionNavigationService.Navigate(_YourRegionKey_, _YourContentKey_)`.
 
-**Feel free to reach out, if help is needed.**
+
+5. **Done!** You can now navigate to your views by simply calling `RegionNavigationService.Navigate(_YourRegionKey_, _YourContentKey_)`.
+
+
+## Questions? Problems?
+**Feel free to reach out!**
 
 ## Ideas
-* Add events/callbacks.
 * Add support for more Controls (Frames, ...).
 ## Third Party Software / Packages
-Please have a look at [THIRD-PARTY-LICENSES](https://github.com/philipp2604/WpfNavigation/blob/master/THIRD-PARTY-LICENSES.md) for all the awesome packages used in this template.
+Please have a look at [THIRD-PARTY-LICENSES](https://github.com/philipp2604/WpfNavigation/blob/master/THIRD-PARTY-LICENSES.md) for all the awesome packages used in this library.
 
 ## License
-This template is [MIT licensed](https://github.com/philipp2604/WpfNavigation/blob/master/LICENSE.txt).
+This library is [MIT licensed](https://github.com/philipp2604/WpfNavigation/blob/master/LICENSE.txt).
