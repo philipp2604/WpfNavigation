@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using WpfNavigation.Exceptions;
 using WpfNavigation.Interfaces.Services;
+using WpfNavigation.Interfaces.ViewModels;
 using WpfNavigation.Models;
 
 namespace WpfNavigation.Services;
@@ -94,7 +95,7 @@ public class RegionNavigationService(INavigationContentService contentService) :
     }
 
     /// <inheritdoc/>
-    public void Navigate(string regionKey, string contentKey)
+    public void Navigate(string regionKey, string contentKey, object? parametersNavigatingFrom = null, object? parametersNavigatingTo = null)
     {
         if (regionKey == null)
             throw RegionNavigationServiceException.Prebuilt.ArgumentNullException(nameof(regionKey));
@@ -105,11 +106,27 @@ public class RegionNavigationService(INavigationContentService contentService) :
         if (!KeyRegistered(regionKey))
             throw RegionNavigationServiceException.Prebuilt.RegionKeyNotRegistered(regionKey);
 
+
+        object? lastViewModel = null;
         var view = _contentService.GetContentView(contentKey);
         var viewModel = _contentService.GetContentViewModel(contentKey);
 
+
+        if (_regions[regionKey].Control.Content != null)
+        {
+            var dataContext = ((FrameworkElement)_regions[regionKey].Control.Content).DataContext;
+            if(dataContext != null)
+                lastViewModel = dataContext;
+
+            if (dataContext != null && dataContext.GetType().IsAssignableTo(typeof(INavigationAware)))
+                ((INavigationAware)dataContext).OnNavigatedFrom(viewModel, parametersNavigatingFrom);
+        }
+
         _regions[regionKey].Control.Content = view;
         ((FrameworkElement)_regions[regionKey].Control.Content).DataContext = viewModel;
+
+        if(viewModel != null && viewModel.GetType().IsAssignableTo(typeof(INavigationAware)))
+            ((INavigationAware)viewModel).OnNavigatedTo(lastViewModel, parametersNavigatingTo);
     }
 
     /// <summary>

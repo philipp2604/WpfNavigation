@@ -70,6 +70,7 @@ public partial class App : Application
         services.AddTransient<Content1ViewModel>();
         services.AddTransient<Content2>();
         services.AddTransient<Content3>();
+        services.AddTransient<Content3ViewModel>();
     }
 
     /// <summary>
@@ -85,7 +86,7 @@ public partial class App : Application
 
         navigationContentService.RegisterContent<Content1, Content1ViewModel>(NavigationConstants.Content.Content1);
         navigationContentService.RegisterContent<Content2>(NavigationConstants.Content.Content2);
-        navigationContentService.RegisterContent<Content3>(NavigationConstants.Content.Content3);
+        navigationContentService.RegisterContent<Content3, Content3ViewModel>(NavigationConstants.Content.Content3);
     }
 
     /// <summary>

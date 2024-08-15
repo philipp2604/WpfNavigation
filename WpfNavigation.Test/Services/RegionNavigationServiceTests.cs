@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Moq;
+using System.Windows.Controls;
 using WpfNavigation.Exceptions;
 using WpfNavigation.Interfaces.Services;
 using WpfNavigation.Interfaces.ViewModels;
@@ -191,6 +192,69 @@ public class RegionNavigationServiceTests
         Assert.Equal(control.Content, view);
         Assert.NotNull(((Page)control.Content).DataContext);
         Assert.Equal(((Page)control.Content).DataContext, viewModel.Object);
+    }
+
+    [WpfFact]
+    public void Navigate_NavigationAwareViewModel_Successful()
+    {
+        //Arrange
+        var unawareContentKey = "unawareKey";
+        var awareContentKey = "awareKey";
+        var key = "testKey";
+        var view = new Page();
+        var control = new ContentControl();
+        var region = new NavigationRegion(key, control);
+
+        int testParam = 123;
+
+        var unawareViewModel = new Moq.Mock<IViewModel>();
+        var awareViewModel = new Moq.Mock<INavigationAware>();
+        awareViewModel
+            .Setup(x => x.OnNavigatedFrom(It.IsAny<object?>(), It.IsAny<object?>()))
+            .Callback<object?, object?>((vm, param) =>
+            {
+                Assert.NotNull(vm);
+                Assert.Equal(vm, unawareViewModel.Object);
+                Assert.Equal(param, testParam);
+            });
+        awareViewModel
+            .Setup(x => x.OnNavigatedTo(It.IsAny<object?>(), It.IsAny<object?>()))
+            .Callback<object?, object?>((vm, param) =>
+            {
+                Assert.Null(vm);
+                Assert.Equal(param, testParam);
+            });
+
+        var awareViewModelAsIViewModel = awareViewModel.As<IViewModel>();
+
+        var navigationContentService = new Moq.Mock<INavigationContentService>();
+        navigationContentService
+            .Setup(x => x.GetContentView(unawareContentKey))
+            .Returns(view);
+        navigationContentService
+            .Setup(x => x.GetContentView(awareContentKey))
+            .Returns(view);
+        navigationContentService
+            .Setup(x => x.GetContentViewModel(unawareContentKey))
+            .Returns(unawareViewModel.Object);
+        navigationContentService
+            .Setup(x => x.GetContentViewModel(awareContentKey))
+            .Returns(awareViewModelAsIViewModel.Object);
+
+        RegionNavigationService.ClearRegions();
+        RegionNavigationService.RegisterRegion(region);
+
+        var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
+
+        //Act
+        regionNavigationService.Navigate(key, awareContentKey, null, 123);
+        regionNavigationService.Navigate(key, unawareContentKey, 123);
+
+        //Assert
+        Assert.NotNull(control.Content);
+        Assert.Equal(control.Content, view);
+        Assert.NotNull(((Page)control.Content).DataContext);
+        Assert.Equal(((Page)control.Content).DataContext, unawareViewModel.Object);
     }
 
     [WpfFact]
