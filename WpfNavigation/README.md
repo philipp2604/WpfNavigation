@@ -39,8 +39,6 @@ You can acquire this library either directly via the NuGet package manager or by
 ## Questions? Problems?
 **Feel free to reach out!**
 
-## Ideas
-* Add support for more Controls (Frames, ...).
 ## Third Party Software / Packages
 Please have a look at [THIRD-PARTY-LICENSES](https://github.com/philipp2604/WpfNavigation/blob/master/THIRD-PARTY-LICENSES.md) for all the awesome packages used in this library.
 

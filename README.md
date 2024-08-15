@@ -47,6 +47,8 @@ These screenshots show the example pages, included in the project.
 
 ## Ideas
 * Add support for more Controls (Frames, ...).
+* Add non-throwing methods, like 'TryNavigate'.
+
 ## Third Party Software / Packages
 Please have a look at [THIRD-PARTY-LICENSES](./THIRD-PARTY-LICENSES.md) for all the awesome packages used in this library.
 
