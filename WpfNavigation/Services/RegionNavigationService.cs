@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using WpfNavigation.Exceptions;
 using WpfNavigation.Interfaces.Services;
@@ -143,7 +144,11 @@ public class RegionNavigationService(INavigationContentService contentService) :
         var view = _contentService.GetContentView(contentKey);
         var viewModel = _contentService.GetContentViewModel(contentKey);
 
-        if (_regions[regionKey].Control.Content != null)
+        object? content = null;
+
+        await _regions[regionKey].Control.Dispatcher.InvokeAsync(() => content = _regions[regionKey].Control.Content);
+
+        if (content != null)
         {
             var dataContext = ((FrameworkElement)_regions[regionKey].Control.Content).DataContext;
             if (dataContext != null)
@@ -151,15 +156,16 @@ public class RegionNavigationService(INavigationContentService contentService) :
 
             if (dataContext?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
                 await ((INavigationAware)dataContext).OnNavigatedFromAsync(viewModel, parametersNavigatingFrom);
-
-            _regions[regionKey].Control.Content = view;
-            ((FrameworkElement)_regions[regionKey].Control.Content).DataContext = viewModel;
-
-            if (viewModel?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
-                await ((INavigationAware)viewModel).OnNavigatedToAsync(lastViewModel, parametersNavigatingTo);
-
-            await Task.CompletedTask;
         }
+
+        await _regions[regionKey].Control.Dispatcher.InvokeAsync(() => _regions[regionKey].Control.Content = view);
+
+        ((FrameworkElement)_regions[regionKey].Control.Content).DataContext = viewModel;
+
+        if (viewModel?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
+            await ((INavigationAware)viewModel).OnNavigatedToAsync(lastViewModel, parametersNavigatingTo);
+
+        await Task.CompletedTask;
     }
 
     /// <summary>
