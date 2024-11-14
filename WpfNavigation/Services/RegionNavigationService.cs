@@ -106,11 +106,9 @@ public class RegionNavigationService(INavigationContentService contentService) :
         if (!KeyRegistered(regionKey))
             throw RegionNavigationServiceException.Prebuilt.RegionKeyNotRegistered(regionKey);
 
-
         object? lastViewModel = null;
         var view = _contentService.GetContentView(contentKey);
         var viewModel = _contentService.GetContentViewModel(contentKey);
-
 
         if (_regions[regionKey].Control.Content != null)
         {
@@ -118,14 +116,14 @@ public class RegionNavigationService(INavigationContentService contentService) :
             if(dataContext != null)
                 lastViewModel = dataContext;
 
-            if (dataContext != null && dataContext.GetType().IsAssignableTo(typeof(INavigationAware)))
+            if (dataContext?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
                 ((INavigationAware)dataContext).OnNavigatedFrom(viewModel, parametersNavigatingFrom);
         }
 
         _regions[regionKey].Control.Content = view;
         ((FrameworkElement)_regions[regionKey].Control.Content).DataContext = viewModel;
 
-        if(viewModel != null && viewModel.GetType().IsAssignableTo(typeof(INavigationAware)))
+        if(viewModel?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
             ((INavigationAware)viewModel).OnNavigatedTo(lastViewModel, parametersNavigatingTo);
     }
 
@@ -151,13 +149,13 @@ public class RegionNavigationService(INavigationContentService contentService) :
             if (dataContext != null)
                 lastViewModel = dataContext;
 
-            if (dataContext != null && dataContext.GetType().IsAssignableTo(typeof(INavigationAware)))
+            if (dataContext?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
                 await ((INavigationAware)dataContext).OnNavigatedFromAsync(viewModel, parametersNavigatingFrom);
 
             _regions[regionKey].Control.Content = view;
             ((FrameworkElement)_regions[regionKey].Control.Content).DataContext = viewModel;
 
-            if (viewModel != null && viewModel.GetType().IsAssignableTo(typeof(INavigationAware)))
+            if (viewModel?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
                 await ((INavigationAware)viewModel).OnNavigatedToAsync(lastViewModel, parametersNavigatingTo);
         }
     }
