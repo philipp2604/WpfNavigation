@@ -129,6 +129,39 @@ public class RegionNavigationService(INavigationContentService contentService) :
             ((INavigationAware)viewModel).OnNavigatedTo(lastViewModel, parametersNavigatingTo);
     }
 
+    /// <inheritdoc/>
+    public async Task NavigateAsync(string regionKey, string contentKey, object? parametersNavigatingFrom = null, object? parametersNavigatingTo = null)
+    {
+        if (regionKey == null)
+            throw RegionNavigationServiceException.Prebuilt.ArgumentNullException(nameof(regionKey));
+
+        if (contentKey == null)
+            throw RegionNavigationServiceException.Prebuilt.ArgumentNullException(nameof(contentKey));
+
+        if (!KeyRegistered(regionKey))
+            throw RegionNavigationServiceException.Prebuilt.RegionKeyNotRegistered(regionKey);
+
+        object? lastViewModel = null;
+        var view = _contentService.GetContentView(contentKey);
+        var viewModel = _contentService.GetContentViewModel(contentKey);
+
+        if (_regions[regionKey].Control.Content != null)
+        {
+            var dataContext = ((FrameworkElement)_regions[regionKey].Control.Content).DataContext;
+            if (dataContext != null)
+                lastViewModel = dataContext;
+
+            if (dataContext != null && dataContext.GetType().IsAssignableTo(typeof(INavigationAware)))
+                await ((INavigationAware)dataContext).OnNavigatedFromAsync(viewModel, parametersNavigatingFrom);
+
+            _regions[regionKey].Control.Content = view;
+            ((FrameworkElement)_regions[regionKey].Control.Content).DataContext = viewModel;
+
+            if (viewModel != null && viewModel.GetType().IsAssignableTo(typeof(INavigationAware)))
+                await ((INavigationAware)viewModel).OnNavigatedToAsync(lastViewModel, parametersNavigatingTo);
+        }
+    }
+
     /// <summary>
     /// Checks if a region's key is already registered.
     /// </summary>
