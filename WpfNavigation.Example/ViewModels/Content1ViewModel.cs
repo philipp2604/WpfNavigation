@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
 using WpfNavigation.Example.Constants;
 using WpfNavigation.Interfaces.Services;
 using WpfNavigation.Interfaces.ViewModels;
@@ -11,10 +12,10 @@ namespace WpfNavigation.Example.ViewModels;
 public class Content1ViewModel(IRegionNavigationService navigationRegionService) : IViewModel
 {
     private readonly IRegionNavigationService _navigationRegionService = navigationRegionService;
-    private RelayCommand? _switchCmd;
+    private ICommand? _switchCmd;
     private bool _state;
 
-    public RelayCommand SwitchCmd => _switchCmd ??= new RelayCommand(() =>
+    public ICommand SwitchCmd => _switchCmd ??= new RelayCommand(() =>
     {
         if (_state)
         {

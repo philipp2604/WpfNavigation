@@ -157,6 +157,8 @@ public class RegionNavigationService(INavigationContentService contentService) :
 
             if (viewModel?.GetType().IsAssignableTo(typeof(INavigationAware)) == true)
                 await ((INavigationAware)viewModel).OnNavigatedToAsync(lastViewModel, parametersNavigatingTo);
+
+            await Task.CompletedTask;
         }
     }
 
