@@ -33,7 +33,7 @@ public interface IRegionNavigationService
     public NavigationRegion GetRegion(string key);
 
     /// <summary>
-    /// Navigates to the specified content.
+    /// Navigates to the specified content and optionally calls the callbacks of <see cref="INavigationAware"/> view models.
     /// </summary>
     /// <param name="regionKey">Region that shall navigate.</param>
     /// <param name="contentKey">The content to navigate to.</param>
@@ -41,6 +41,16 @@ public interface IRegionNavigationService
     /// <param name="parametersNavigatingTo">Optional parameters passed to the next view model.</param>
     /// <exception cref="RegionNavigationServiceException"></exception>
     public void Navigate(string regionKey, string contentKey, object? parametersNavigatingFrom = null, object? parametersNavigatingTo = null);
+
+    /// <summary>
+    /// Navigates to the specified content and optionally calls the asynchronous callbacks of <see cref="INavigationAware"/> view models.
+    /// </summary>
+    /// <param name="regionKey">Region that shall navigate.</param>
+    /// <param name="contentKey">The content to navigate to.</param>
+    /// <param name="parametersNavigatingFrom">Optional parameters passed to the current view model.</param>
+    /// <param name="parametersNavigatingTo">Optional parameters passed to the next view model.</param>
+    /// <exception cref="RegionNavigationServiceException"></exception>
+    public Task NavigateAsync(string regionKey, string contentKey, object? parametersNavigatingFrom = null, object? parametersNavigatingTo = null);
 
     /// <summary>
     /// Checks if a region's key is already registered.

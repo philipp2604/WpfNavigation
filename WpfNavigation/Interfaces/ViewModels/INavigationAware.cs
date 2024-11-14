@@ -14,12 +14,28 @@ public interface INavigationAware
     /// </summary>
     /// <param name="lastViewModel">The last/current view model.</param>
     /// <param name="parameters">Optional parameters.</param>
-    void OnNavigatedTo(object? lastViewModel, object? parameters);
+    public void OnNavigatedTo(object? lastViewModel, object? parameters);
+
+    /// <summary>
+    /// Asynchronous callback, called when navigating to this view model.
+    /// </summary>
+    /// <param name="lastViewModel">The last/current view model.</param>
+    /// <param name="parameters">Optional parameters.</param>
+    /// <returns>A <see cref="Task"/>.</returns>
+    public Task OnNavigatedToAsync(object? lastViewModel, object? parameters);
 
     /// <summary>
     /// Callback, called when navigating away from this view model.
     /// </summary>
     /// <param name="nextViewModel">The next view model.</param>
     /// <param name="parameters">Optional parameters.</param>
-    void OnNavigatedFrom(object? nextViewModel, object? parameters);
+    public void OnNavigatedFrom(object? nextViewModel, object? parameters);
+
+    /// <summary>
+    /// Asynchronous callback, called when navigating away from this view model.
+    /// </summary>
+    /// <param name="nextViewModel">The next view model.</param>
+    /// <param name="parameters">Optional parameters.</param>
+    /// <returns>A <see cref="Task"/>.</returns>
+    public Task OnNavigatedFromAsync(object? nextViewModel, object? parameters);
 }

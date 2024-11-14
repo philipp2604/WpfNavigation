@@ -14,7 +14,7 @@ public class RegionNavigationServiceTests
     public void KeyRegistered_KeyIsRegistered_ReturnsTrue()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         var region = new NavigationRegion(key, new ContentControl());
         RegionNavigationService.ClearRegions();
         RegionNavigationService.RegisterRegion(region);
@@ -30,7 +30,7 @@ public class RegionNavigationServiceTests
     public void KeyRegistered_KeyIsNotRegistered_ReturnsFalse()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         RegionNavigationService.ClearRegions();
 
         //Act
@@ -44,7 +44,7 @@ public class RegionNavigationServiceTests
     public void KeyRegistered_KeyIsNull_Throws()
     {
         //Arrange
-        string? key = null;
+        const string? key = null;
 
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.KeyRegistered(key!));
@@ -54,7 +54,7 @@ public class RegionNavigationServiceTests
     public void Static_RegisterRegion_Successful()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         var region = new NavigationRegion(key, new ContentControl());
         RegionNavigationService.ClearRegions();
 
@@ -66,7 +66,7 @@ public class RegionNavigationServiceTests
     public void Static_RegisterRegion_KeyIsNull_Throws()
     {
         //Arrange
-        string? key = null;
+        const string? key = null;
         var region = new NavigationRegion(key!, new ContentControl());
 
         //Act & Assert
@@ -77,7 +77,7 @@ public class RegionNavigationServiceTests
     public void Static_RegisterRegion_ControlIsNull_Throws()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         var region = new NavigationRegion(key!, null!);
 
         //Act & Assert
@@ -88,7 +88,7 @@ public class RegionNavigationServiceTests
     public void Static_RegisterRegion_KeyIsAlreadyRegistered_Throws()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         var region = new NavigationRegion(key!, new ContentControl());
         RegionNavigationService.RegisterRegion(region);
 
@@ -100,7 +100,7 @@ public class RegionNavigationServiceTests
     public void Static_GetRegion_Successful()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         var region = new NavigationRegion(key!, new ContentControl());
         RegionNavigationService.ClearRegions();
         RegionNavigationService.RegisterRegion(region);
@@ -117,7 +117,7 @@ public class RegionNavigationServiceTests
     public void Static_GetRegion_KeyIsNull_Throws()
     {
         //Arrange
-        string? key = null;
+        const string? key = null;
 
         //Act & Assert
         Assert.Throws<RegionNavigationServiceException>(() => RegionNavigationService.GetRegion(key!));
@@ -127,7 +127,7 @@ public class RegionNavigationServiceTests
     public void Static_GetRegion_KeyIsNotRegistered_Throws()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         RegionNavigationService.ClearRegions();
 
         //Act & Assert
@@ -138,7 +138,7 @@ public class RegionNavigationServiceTests
     public void Navigate_ViewOnly_Successful()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         var view = new Page();
         var control = new ContentControl();
         var region = new NavigationRegion(key, control);
@@ -165,7 +165,7 @@ public class RegionNavigationServiceTests
     public void Navigate_ViewAndViewModel_Successful()
     {
         //Arrange
-        var key = "testKey";
+        const string key = "testKey";
         var view = new Page();
         var viewModel = new Moq.Mock<IViewModel>();
         var control = new ContentControl();
@@ -198,14 +198,14 @@ public class RegionNavigationServiceTests
     public void Navigate_NavigationAwareViewModel_Successful()
     {
         //Arrange
-        var unawareContentKey = "unawareKey";
-        var awareContentKey = "awareKey";
-        var key = "testKey";
+        const string unawareContentKey = "unawareKey";
+        const string awareContentKey = "awareKey";
+        const string key = "testKey";
         var view = new Page();
         var control = new ContentControl();
         var region = new NavigationRegion(key, control);
 
-        int testParam = 123;
+        const int testParam = 123;
 
         var unawareViewModel = new Moq.Mock<IViewModel>();
         var awareViewModel = new Moq.Mock<INavigationAware>();
@@ -261,8 +261,8 @@ public class RegionNavigationServiceTests
     public void Navigate_RegionKeyIsNull_Throws()
     {
         //Arrange
-        string? regionKey = null;
-        var contentKey = "testKey";
+        const string? regionKey = null;
+        const string contentKey = "testKey";
 
         var navigationContentService = new Moq.Mock<INavigationContentService>();
 
@@ -276,8 +276,8 @@ public class RegionNavigationServiceTests
     public void Navigate_ContentKeyIsNull_Throws()
     {
         //Arrange
-        var regionKey = "testKey";
-        string? contentKey = null;
+        const string regionKey = "testKey";
+        const string? contentKey = null;
 
         var navigationContentService = new Moq.Mock<INavigationContentService>();
 
@@ -291,8 +291,8 @@ public class RegionNavigationServiceTests
     public void Navigate_RegionKeyIsNotRegistered_Throws()
     {
         //Arrange
-        var regionKey = "testKey";
-        var contentKey = "testKey";
+        const string regionKey = "testKey";
+        const string contentKey = "testKey";
 
         var navigationContentService = new Moq.Mock<INavigationContentService>();
 
