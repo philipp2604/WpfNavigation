@@ -51,7 +51,7 @@ public class RegionNavigationService(INavigationContentService contentService) :
     }
 
     /// <summary>
-    /// Creates and registers a navigatin region.
+    /// Creates and registers a navigation region.
     /// </summary>
     /// <param name="key">The region's key to recall it.</param>
     /// <param name="control">The region's ContentControl, used to display the navigation content.</param>
@@ -73,6 +73,25 @@ public class RegionNavigationService(INavigationContentService contentService) :
     void IRegionNavigationService.RegisterRegion(string key, ContentControl control)
     {
         RegisterRegion(key, control);
+    }
+
+    /// <summary>
+    /// Removes a registered navigation region from the dictionary.
+    /// </summary>
+    /// <param name="key">The region's key to remove.</param>
+    public static void UnregisterRegion(string key)
+    {
+        if (key == null)
+            throw RegionNavigationServiceException.Prebuilt.ArgumentNullException(nameof(key));
+
+        if (KeyRegistered(key))
+            _regions.Remove(key);
+    }
+
+    /// <inheritdoc/>
+    void IRegionNavigationService.UnregisterRegion(string key)
+    {
+        UnregisterRegion(key);
     }
 
     /// <summary>

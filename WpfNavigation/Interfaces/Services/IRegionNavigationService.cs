@@ -17,12 +17,18 @@ public interface IRegionNavigationService
     public void RegisterRegion(NavigationRegion region);
 
     /// <summary>
-    /// Creates and registers a navigatin region.
+    /// Creates and registers a navigation region.
     /// </summary>
     /// <param name="key">The region's key to recall it.</param>
     /// <param name="control">The region's ContentControl, used to display the navigation content.</param>
     /// <exception cref="RegionNavigationServiceException"></exception>
     public void RegisterRegion(string key, ContentControl control);
+
+    /// <summary>
+    /// Removes a registered navigation region from the dictionary.
+    /// </summary>
+    /// <param name="key">The region's key to remove.</param>
+    public void UnregisterRegion(string key);
 
     /// <summary>
     /// Returns a registered <see cref="NavigationRegion"/>.
