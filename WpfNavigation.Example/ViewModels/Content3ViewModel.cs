@@ -13,7 +13,7 @@ namespace WpfNavigation.Example.ViewModels;
 public class Content3ViewModel : IViewModel, INavigationAware
 {
     /// <inheritdoc/>
-    void INavigationAware.OnNavigatedTo(object? lastViewModel, object? parameters)
+    void INavigationAware.OnNavigatedTo(object? lastViewModel, object? sender, object? parameters)
     {
     }
 
@@ -22,7 +22,7 @@ public class Content3ViewModel : IViewModel, INavigationAware
     {
     }
 
-    public Task OnNavigatedToAsync(object? lastViewModel, object? parameters)
+    public Task OnNavigatedToAsync(object? lastViewModel, object? sender, object? parameters)
     {
         return Task.CompletedTask;
     }

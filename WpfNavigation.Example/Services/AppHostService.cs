@@ -9,10 +9,10 @@ namespace WpfNavigation.Example.Services;
 /// AppHostService class.
 /// </summary>
 /// <param name="navigationService">Navigation service.</param>
-public class AppHostService(IServiceProvider serviceProvider, IRegionNavigationService navigationRegionService) : IHostedService
+public class AppHostService(IServiceProvider serviceProvider, IRegionNavigationService navigationService) : IHostedService
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
-    private readonly IRegionNavigationService _navigationRegionService = navigationRegionService;
+    private readonly IRegionNavigationService _navigationService = navigationService;
     private bool _isInitialized;
 
     /// <summary>
@@ -50,8 +50,8 @@ public class AppHostService(IServiceProvider serviceProvider, IRegionNavigationS
                 throw new NullReferenceException(nameof(mainWnd));
 
             ((MainWindow)mainWnd).Show();
-            _navigationRegionService.Navigate(NavigationConstants.Regions.Region1, NavigationConstants.Content.Content1);
-            _navigationRegionService.Navigate(NavigationConstants.Regions.Region2, NavigationConstants.Content.Content2);
+            _navigationService.Navigate(NavigationConstants.Regions.Region1, NavigationConstants.Content.Content1, null);
+            _navigationService.Navigate(NavigationConstants.Regions.Region2, NavigationConstants.Content.Content2, null);
             await Task.CompletedTask;
         }
     }

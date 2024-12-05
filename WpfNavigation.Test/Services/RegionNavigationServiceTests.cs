@@ -154,7 +154,7 @@ public class RegionNavigationServiceTests
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
 
         //Act
-        regionNavigationService.Navigate(key, key);
+        regionNavigationService.Navigate(key, key, null);
 
         //Assert
         Assert.NotNull(control.Content);
@@ -185,7 +185,7 @@ public class RegionNavigationServiceTests
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
 
         //Act
-        regionNavigationService.Navigate(key, key);
+        regionNavigationService.Navigate(key, key, null);
 
         //Assert
         Assert.NotNull(control.Content);
@@ -218,8 +218,8 @@ public class RegionNavigationServiceTests
                 Assert.Equal(param, testParam);
             });
         awareViewModel
-            .Setup(x => x.OnNavigatedTo(It.IsAny<object?>(), It.IsAny<object?>()))
-            .Callback<object?, object?>((vm, param) =>
+            .Setup(x => x.OnNavigatedTo(It.IsAny<object?>(), It.IsAny<object?>(), It.IsAny<object?>()))
+            .Callback<object?, object?, object?>((vm, sender, param) =>
             {
                 Assert.Null(vm);
                 Assert.Equal(param, testParam);
@@ -247,8 +247,8 @@ public class RegionNavigationServiceTests
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
 
         //Act
-        regionNavigationService.Navigate(key, awareContentKey, null, 123);
-        regionNavigationService.Navigate(key, unawareContentKey, 123);
+        regionNavigationService.Navigate(key, awareContentKey, null, null, 123);
+        regionNavigationService.Navigate(key, unawareContentKey, null, 123);
 
         //Assert
         Assert.NotNull(control.Content);
@@ -269,7 +269,7 @@ public class RegionNavigationServiceTests
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
 
         //Act & Assert
-        Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey!, contentKey));
+        Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey!, contentKey, null));
     }
 
     [WpfFact]
@@ -284,7 +284,7 @@ public class RegionNavigationServiceTests
         var regionNavigationService = new RegionNavigationService(navigationContentService.Object);
 
         //Act & Assert
-        Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey, contentKey!));
+        Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey, contentKey!, null));
     }
 
     [WpfFact]
@@ -300,6 +300,6 @@ public class RegionNavigationServiceTests
         RegionNavigationService.ClearRegions();
 
         //Act & Assert
-        Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey, contentKey!));
+        Assert.Throws<RegionNavigationServiceException>(() => regionNavigationService.Navigate(regionKey, contentKey!, null));
     }
 }
